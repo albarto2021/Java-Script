@@ -11,11 +11,41 @@
     <main>
       <div class="container text-center">
         <h1>Ornekler</h1>
-        <img src="img/lamba_off.gif" class="resim" alt="" />
+        <img src="img/lamba_off.gif" class="resim" alt="off" />
         <div class="mt-4">
-          <!-- mt-4 ile margin verdik resimle butonlari ayirdik -->
           <button class="btn on btn-outline-warning">Aç</button>
-          <button class="btn off btn-outline-primary">Kapat</button>
+          <button class="btn off btn-outline-primary">Kapa</button>
+        </div>
+        <div class="input-div">
+          <label for="textbox">Bir seyler yaziniz</label>
+          <input class="textbox" type="text" />
+          <label for="checkbox">Küçük/Büyük</label>
+          <input class="checkbox" type="checkbox" />
+        </div>
+
+        <ul class="liste text-start">
+          <!-- * ornek 6 -->
+          <li>Javascript</li>
+          <li>Java</li>
+          <li>Phyton</li>
+          <li>C++</li>
+          <li>SQL</li>
+        </ul>
+        <div
+          class="
+            text-start
+            d-flex
+            justify-content-start
+            align-items-center
+            mt-5
+          "
+        >
+          <!-- ? d-flex ve align-items-center ve justify-content-start ile hizalama yaptik  
+                -->
+          <input class="dil me-1" type="text" />
+          <button class="btn ekle btn-success me-1">Ekle</button>
+          <!-- ? me-1 ile butonlarin arasini actik  -->
+          <button class="btn sil btn-danger">Sil</button>
         </div>
       </div>
     </main>
