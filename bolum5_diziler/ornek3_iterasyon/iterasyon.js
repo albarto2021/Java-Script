@@ -145,7 +145,9 @@ buyuk.forEach((isim) => console.log(isim));
 // map() metodudundan sonra eğer bir terminal işlemi (forEach gibi) kullanılırsa map() metodu bir dizi döndürmez.
 isimler.map((isim) => isim.toUpperCase()).forEach((isim) => console.log(isim));
 
-// Dolar, Euro parite hesap
+// ----------------------------------
+// * ORNEK: Dolar, Euro parite hesap
+// ----------------------------------
 tlFiyatlar = [120, 340, 550, 245, 322.5, 789];
 const dolarKur = document.querySelector(".dolar");
 const euroKur = document.querySelector(".euro");
@@ -183,15 +185,96 @@ const stringZamliTlFiyatlar = zamliTlFiyatlar.join(""); // virgullerden kurtulma
 document.querySelector(".zamli-fiyat").innerHTML = stringZamliTlFiyatlar;
 console.log(zamliTlFiyatlar);
 
-// tlFiyatlar listesinde fiyati 250 Tl den az olanlari ayri bir diziye saklayalim.
+// ----------------------------------
+// --------- FILTER METODU ----------
+// ----------------------------------
+// ? tlFiyatlar listesinde fiyati 250 Tl den az olanlari ayri bir diziye saklayalim.
 const kucuk250 = tlFiyatlar.filter((d) => d < 250);
-console.log(kucuk250);
+console.log(kucuk250); // ? 250 den kucuk olanlari kucuk250 dizisine aktarir.
 
 // fiyati 350 den kucuk olanlari yazdiriniz.
 const y = tlFiyatlar.filter((d) => d < 350).forEach((x) => console.log(x));
 
-// Küçükten büyüğe sıralama
+// * SORT() Küçükten büyüğe sıralama
 console.log(tlFiyatlar.sort((a, b) => a - b));
 
-// Büyükten küçüğe  sıralama
+// * SORT() Büyükten küçüğe  sıralama
 console.log(tlFiyatlar.sort((a, b) => b - a));
+
+// ----------------------------------
+// --------- PIPLINE ----------------
+// ----------------------------------
+
+// Maasi 4000 $'den dusuk olanlara %50 zam yapmak istiyoruz. ve bunu ayri bir dizi olarak saklamak istiyoruz.
+const maaslar = [3000, 5000, 4000, 6000, 6500];
+
+const zamliMaaslar = maaslar.filter((d) => d <= 4000).map((d) => d * 1.5);
+console.log(zamliMaaslar);
+
+// Maasi 4000 $'den buyuk olanlara %25 zam yapmarak sonuclari yazdiralim
+maaslar
+  .filter((d) => d > 4000) // 4000 buyuk olanlar secildi
+  .map((d) => d * 1.25) // 1.25 zam yapildi
+  .forEach((d) => console.log(d)); // yazdirildi
+
+// ------------- ORNEK ------------
+
+const adlar = [
+  "Samed",
+  "Hakki",
+  "Duygu",
+  "Emrullah",
+  "Bilal",
+  "Ali",
+  "Ahmet",
+  "Hasan",
+  "Serdar",
+  "Defne",
+];
+
+// const harfBul = function () { // function expression yontemi
+
+// }
+// arrow function yontemi
+const isimBul = (harf) => {
+  const buyukHarf = harf.toUpperCase();
+  adlar.filter((x) => x.startsWith(buyukHarf)).forEach((x) => console.log(x));
+};
+
+isimBul("A");
+isimBul("a");
+isimBul("s");
+isimBul("S");
+
+// ----------------------------------
+// --------- REDUCE METHODU ---------
+// ----------------------------------
+
+// ! const maaslar = [3000, 5000, 4000, 6000, 6500];
+// Maaslarin toplamini bulunuz.
+const toplamMaas = maaslar.reduce((x, y) => x + y, 0);
+console.log(toplamMaas);
+
+const toplamMaas1 = maaslar.reduce((x, y, i) => {
+  console.log(`${i} iterasyon : ${x}`);
+  return x + y; // arrow function da suslu parantez kullanılınca return yapmak lazim
+});
+console.log(toplamMaas1);
+
+// 4000 den buyuk olan maaslarini hesaplayalim.
+
+const buyukDortBin = maaslar
+  .filter((x) => x >= 4000)
+  .reduce((x, y) => x + y, 0);
+
+console.log(buyukDortBin);
+
+// ------------- PIPELINE ORNEK ------------
+// Maasi ortalamnin altinda olanlara %20 zam ustunde olanlara ise %10 zam yapilmak isteniyor.
+// ! const maaslar = [3000, 5000, 4000, 6000, 6500];
+
+const ortalamaMaas = maaslar.reduce((x, y) => x + y, 0) / maaslar.length;
+const yeniMaaslar = maaslar
+  .filter((m) => m >= ortalamaMaas)
+  .map((m) => m * 1.1);
+console.log(yeniMaaslar);

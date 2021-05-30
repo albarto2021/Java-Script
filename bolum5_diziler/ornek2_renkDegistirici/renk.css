@@ -1,0 +1,21 @@
+.container {
+  width: 100vw; /* ? view port width: aktif tarayici alaninin %100 u.*/
+  height: 100vh; /* ? view port heiht: aktif tarayici alaninin %100 u.*/
+  display: flex; /*asagidaki ozelliklerden once bu ozellik verilmeli*/
+  justify-content: center; /* yatay hizalama */
+  align-items: center;
+  flex-direction: column;
+}
+.btn {
+  padding: 1rem;
+  background-color: bisque;
+  border-radius: 15px;
+}
+.btn:hover {
+  background-color: lightcoral;
+}
+h1 {
+  background-color: rgb(235, 226, 215);
+}
+.renk {
+}
